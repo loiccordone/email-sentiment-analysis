@@ -16,6 +16,8 @@ Réalisé durant le mois de juillet 2017 dans le cadre d'un stage chez SQLI Toul
 
 # Utiliser l'algorithme en R
 
-1. Ouvrir et lancer \src\main\resources\static\cordialement-regression.R au minimum jusqu'à la ligne 111
-2. Afficher "best$par"
-3. Modifier \src\main\java\fr\sqli\cordialement\services\impl\ScoreServiceImpl.java pour y changer les valeurs de "param" dans la méthode "computeEmailScore"
+1. Ouvrir \src\main\resources\static\cordialement-regression.R 
+2. Changer le répertoire courant sous RStudio "To Source File Location"
+3. Exécuter le script au minimum jusqu'à la ligne 111
+4. Afficher "best$par"
+5. Modifier \src\main\java\fr\sqli\cordialement\services\impl\ScoreServiceImpl.java pour y changer les valeurs de "param" dans la méthode "computeEmailScore"
