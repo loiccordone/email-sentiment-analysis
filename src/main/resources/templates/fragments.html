@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    ...
+</head>
+<body>
+    <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary" th:fragment="header(active)">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+            <h3>Cordialement?</h3>
+        </div>
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+            <a href="/" th:class="${active}=='home'? 'mdl-layout\_\_tab is-active' : 'mdl-layout__tab'">Overview</a>
+            <a href="/addemail" th:class="${active}=='addEmail'? 'mdl-layout\_\_tab is-active' : 'mdl-layout\_\_tab'">Add email</a>
+            <a href="/results" th:class="${active}=='viewResults'? 'mdl-layout\_\_tab is-active' : 'mdl-layout\_\_tab'">View results</a>
+        </div>
+    </header>
+
+    <div th:fragment="isAnalysed">
+        Yes
+    </div>
+
+    <div th:fragment="isNotAnalysed">
+        <a th:href="@{/analyse(id=${email.id})}">
+            <span id="'analyse' + ${email.id}">No</span>
+            <span for="'analyse' + ${email.id}" class="mdl-tooltip">
+                 Analyse the email
+            </span>
+        </a>
+    </div>
+
+    <td th:fragment="smileys">
+        <a th:href="@{/score(id=${email.id},api='smileys')}">
+            <span th:id="'smileysScore' + ${email.id}" th:text="${email.getEmailScoreByApiName('smileys') != null} ?
+                ${#numbers.formatDecimal(email.getEmailScoreByApiName('smileys').score,1,3,'POINT')} : 0.000">
+                0.000
+            </span>
+        </a>
+        <span th:for="'smileysScore' + ${email.id}" class="mdl-tooltip">
+            Score the email with Smileys API<br />
+            (last scored :
+            <span th:text="${email.getEmailScoreByApiName('smileys') != null} ?
+                                                            ${email.getEmailScoreByApiName('smileys').displayLastUpdated()} : 'never'">
+                never
+            </span>)
+        </span>
+    </td>
+
+    <td th:fragment="noSmileys">
+        <span th:id="'smileysScore' + ${email.id}">
+                N/A
+        </span>
+        <span th:for="'smileysScore' + ${email.id}" class="mdl-tooltip">
+            This email doesn't have smileys
+        </span>
+    </td>
+</body>
+</html>
